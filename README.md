@@ -14,7 +14,7 @@ This is a simple, modern, and responsive Color Palette Generator built with HTML
 
 ## How to Use
 
-1. Open `[the GitHub Pages link](https://realemmetts.github.io/colorGen/)` in your web browser.
+1. Open [the GitHub Pages link](https://realemmetts.github.io/colorGen/) in your web browser.
 2. Click the "Generate Palette" button to generate a new color palette.
 
 ## Dependencies
