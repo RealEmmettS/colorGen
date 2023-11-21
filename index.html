@@ -14,19 +14,42 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/styles.min.css">
 </head>
 
 <body>
-    <div class="d-flex flex-row justify-content-center align-items-center justify-content-sm-center align-items-sm-center" style="padding: 20px;">
-        <div class="container">
+    <div class="d-flex flex-row justify-content-center align-items-center justify-content-sm-center align-items-sm-center" style="padding: 20px;height: calc(100vh - 40px);width: 100vw;">
+        <!-- Start: Config Section -->
+        <div class="container d-flex d-lg-flex flex-column justify-content-center align-items-center justify-content-lg-center align-items-lg-center">
             <h1 style="font-family: Grngert;font-size: 4rem;text-align: center;margin-bottom: 0px;">Vinnie</h1>
-            <p style="text-align: center;font-family: 'The Laker';margin-top: -15px;">NexT-Gen AI Color Picker</p>
-        </div>
-        <div class="container"></div>
+            <p style="text-align: center;font-family: 'The Laker';margin-top: -15px;">NexT-Gen AI Color Picker</p><!-- Start: Config Options -->
+            <div style="border-top: 1px solid #ddd;font-family: 'The Laker';">
+                <!-- Start: Base Color -->
+                <section class="d-flex d-lg-flex flex-row justify-content-start align-items-center justify-content-lg-start align-items-lg-center" style="margin-top: 10px;">
+                    <p style="padding-right: 10px;margin-bottom: 0px;">Base Color:</p><input type="color" id="selected-color">
+                </section><!-- End: Base Color -->
+                <!-- Start: Vibes -->
+                <section class="d-flex d-lg-flex flex-row justify-content-start align-items-center justify-content-lg-start align-items-lg-center" style="margin-top: 10px;">
+                    <p style="margin: 0px;margin-right: 10px;">Attributed "Vibes":</p><input type="text" id="vibe-input" style="margin-right: 10px;"><button class="btn btn-primary" id="submit-vibe" type="button" style="height: 30px;padding-top: 3px;padding-bottom: 3px;" onclick="addVibe()">Add Vibe</button>
+                </section><!-- End: Vibes -->
+                <!-- Start: List of Vibes -->
+                <section class="d-flex d-lg-flex flex-row justify-content-start align-items-center justify-content-lg-start align-items-lg-center" style="margin-top: 10px;">
+                    <p id="vibe-list" style="margin: 0px;margin-right: 10px;font-family: 'JetBrains Mono', monospace;font-size: 12px;"></p>
+                </section><!-- End: List of Vibes -->
+            </div><!-- End: Config Options -->
+            <!-- Start: Button 30 --><button class="btn btn-primary button-30" type="button" style="color: rgb(0,0,0);background: var(--bs-btn-disabled-color);border-style: none;font-family: 'The Laker';width: 200px;height: 48px;margin-top: 50px;font-size: 25px;" onclick="submit()">SUbmit</button><!-- End: Button 30 -->
+        </div><!-- End: Config Section -->
+        <!-- Start: Vertical Line -->
+        <div class="vertical-line"></div><!-- End: Vertical Line -->
+        <!-- Start: Output Section -->
+        <div class="container d-flex d-lg-flex flex-column justify-content-center align-items-center justify-content-lg-center align-items-lg-center" id="output-container">
+            <div class="d-none loader" id="loading-container"></div>
+        </div><!-- End: Output Section -->
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/script.min.js"></script>
 </body>
 
 </html>
