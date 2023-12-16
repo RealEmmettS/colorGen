@@ -67,7 +67,7 @@ function displayResult(jsonData) {
     // Directly iterate through the colors array and create elements to display the data
     jsonData["Vinnie"].colors.forEach((color) => {
         const colorItem = document.createElement('li');
-        colorItem.innerText = `${color.Name} (${color.Hex}) - ${color.Usage}`;
+        colorItem.innerText = `${str(scolor.Name)} (${str(color.Hex)}) - ${str(color.Usage)}`;
         outputContainer.appendChild(colorItem);
     });
 }
