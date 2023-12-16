@@ -1,32 +1,30 @@
-let vibes = [];
-const maxVibes = 15; // Maximum number of vibes
+var vibes = [];
+const maxVibes = 10; // Maximum number of vibes
+
+function updateVibeList() {
+    let listElement = document.getElementById('vibe-list');
+    listElement.innerText = vibes.join(', '); // Join the vibes with a comma & space
+}
+
 
 function addVibe() {
     let input = document.getElementById('vibe-input');
     let word = input.value.trim();
 
-    // Check if it's a single word, and if the list isn't full
-    if (word.indexOf(' ') === -1 && vibes.length < maxVibes) {
-        vibes.push(word);
-        updateVibeList();
-    }else{
-        //split the string into an array of words
-        let words = word.split(' ');
-        for (const element of words) {
-            if (element !== '') {
-                vibes.push(element);
-                updateVibeList();
-            }
+    // Split the string into an array of words
+    let words = word.split(' ');
+
+    for (const element of words) {
+        // Check if the word is not empty and if the list isn't full
+        if (element !== '' && vibes.length < maxVibes) {
+            vibes.push(element);
+            updateVibeList();
         }
     }
 
     input.value = ''; // Clear the input field after adding
 }
 
-function updateVibeList() {
-    let listElement = document.getElementById('vibe-list');
-    listElement.innerText = vibes.join(', '); // Join the vibes with a comma & space
-}
 
 // New submit function to send data to the API and update the output container
 function submit() {
@@ -59,7 +57,10 @@ function submit() {
     });
 }
 
+
+
 function displayResult(jsonData) {
+    console.log("JSON DATA: \n", jsonData);
     const outputContainer = document.getElementById('output-container');
     outputContainer.innerHTML = ''; // Clear previous contents
 
