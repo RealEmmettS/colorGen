@@ -9,6 +9,15 @@ function addVibe() {
     if (word.indexOf(' ') === -1 && vibes.length < maxVibes) {
         vibes.push(word);
         updateVibeList();
+    }else{
+        //split the string into an array of words
+        let words = word.split(' ');
+        for (const element of words) {
+            if (element !== '') {
+                vibes.push(element);
+                updateVibeList();
+            }
+        }
     }
 
     input.value = ''; // Clear the input field after adding
@@ -22,42 +31,31 @@ function updateVibeList() {
 // New submit function to send data to the API and update the output container
 function submit() {
     const selectedColor = document.getElementById('selected-color').value;
-    console.log(`Selected color: ${selectedColor}`);
     const vibesList = vibes.join(', ');
+
+    console.log(`Selected color: ${selectedColor}`);
     console.log(`Vibes: ${vibesList}`);
 
     // Show the loading animation when the submit button is pressed
     const loadingContainer = document.getElementById('loading-container');
     loadingContainer.style.display = 'block';
 
-    fetch('https://api.vinnie.emmetts.dev/generate_palette', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            base_color: selectedColor, // Changed to base_color to match Flask API
+    $.ajax({
+        url: 'https://api.vinnie.emmetts.dev/generate_palette',
+        type: 'POST',
+        data: {
+            base_color: selectedColor,
             vibes: vibesList
-        })
-    })
-    .then(response => {
-        console.log(response); // Log the raw response
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        },
+        success: function(data) {
+            console.log(data); // Log the JSON data
+            displayResult(data); // Call displayResult with the JSON data
+            loadingContainer.style.display = 'none'; // Hide the loading animation
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error:', errorThrown);
+            loadingContainer.style.display = 'none'; // Hide the loading animation
         }
-        return response.json(); // Parse the response as JSON
-    })
-    .then(jsonData => {
-        console.log(jsonData); // Log the parsed JSON data
-    
-        // Call displayResult with the parsed JSON data
-        displayResult(jsonData);
-    
-        // Hide the loading animation once the response is processed
-        loadingContainer.style.display = 'none';
-    })
-    .catch((error) => {
-        console.error('Error:', error);
     });
 }
 
